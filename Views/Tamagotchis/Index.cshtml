@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Tamagotchi Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h1>Tamagotchi Game</h1>
+    </div>
+    <div class="well text-center">
+      <h3>Would You Like To Play?</h3>
+      <h3>Let's Make a Tama!</h3>
+      <form action='/tama/game' method="post">
+        <div class='form-group'>
+          <label for='tamaName'>Give Your Tama a Name:</label>
+          <input id='tamaName' name='tamaName' class='form-control' type='text'>
+        </div>
+        <button type='submit' class='btn btn-success'>Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
