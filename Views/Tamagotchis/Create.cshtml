@@ -12,10 +12,7 @@
     <div class="well text-center">
       <h3>Here's Your Tama!</h3>
       <ul>
-        @foreach (var Tama in Model)
-        {
-          <li>@Tama.GetName()</li>
-        }
+          <li>@Model.GetName()</li>
       </ul>
       <p><a href="/tamagotchis">Make Another Tama</a></p>
       <p><a href="/tamagotchis/game">Play With Your Tama(s)</a></p>

@@ -20,15 +20,15 @@ namespace Tamagotchis.Controllers
             return View(newTama);
         }
 
-        [HttpPost("/tamagotchis/game")]
+        [Route("/tamagotchis/game")]
         public ActionResult Game()
         {
             List<Tama> allTamas = Tama.GetAll();
-            return View("Game", allTamas);
+            return View(allTamas);
         }
 
         //Actions Below
-        [HttpPost("/tamagotchis/game")]
+        [Route("/tamagotchis/feed")]
         public ActionResult Feed()
         {
             Tama.CycleFeedTamas();
@@ -36,7 +36,7 @@ namespace Tamagotchis.Controllers
             return View("Game", allTamas);
         }
 
-        [HttpPost("/tamagotchis/game")]
+        [Route("/tamagotchis/play")]
         public ActionResult Play()
         {
             Tama.CyclePlayTamas();
@@ -44,7 +44,7 @@ namespace Tamagotchis.Controllers
             return View("Game", allTamas);
         }
 
-        [HttpPost("/tamagotchis/game")]
+        [Route("/tamagotchis/sleep")]
         public ActionResult Sleep()
         {
             Tama.CycleSleepTamas();
@@ -52,10 +52,25 @@ namespace Tamagotchis.Controllers
             return View("Game", allTamas);
         }
 
-        [HttpPost("/tamagotchis/game")]
+        [Route("/tamagotchis/wait")]
         public ActionResult Wait()
         {
             Tama.CycleWaitTamas();
+            List<Tama> allTamas = Tama.GetAll();
+            return View("Game", allTamas);
+        }
+
+        [Route("/tamagotchis/clear")]
+        public ActionResult Clear()
+        {
+            Tama.ClearAll();
+            return View("Index");
+        }
+
+        [Route("/tamagotchis/remove/{id}")]
+        public ActionResult Remove(int id)
+        {
+            Tama.RemoveByIdAndReassignIds(id);
             List<Tama> allTamas = Tama.GetAll();
             return View("Game", allTamas);
         }

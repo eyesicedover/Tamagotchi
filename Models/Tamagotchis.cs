@@ -10,21 +10,24 @@ namespace Tamagotchis.Models
         private int _play;
         private int _sleep;
         private bool _dead;
-        private List<Tama> _instances = new List<Tama> {};
+        private int _id;
+        private static List<Tama> _instances = new List<Tama> {};
 
         public Tama(string name)
         {
-          _name = name;
-          _food = 80;
-          _play = 80;
-          _sleep = 80;
-          _dead = false;
+            _name = name;
+            _food = 80;
+            _play = 80;
+            _sleep = 80;
+            _dead = false;
+            _id = _instances.Count;
         }
 
         public string GetName()
         {
             return _name;
         }
+
         public void SetName(string newName)
         {
             _name = newName;
@@ -34,6 +37,7 @@ namespace Tamagotchis.Models
         {
             return _food;
         }
+
         public void SetFood(int newFood)
         {
             _food = newFood;
@@ -43,6 +47,7 @@ namespace Tamagotchis.Models
         {
             return _play;
         }
+
         public void SetPlay(int newPlay)
         {
             _play = newPlay;
@@ -52,15 +57,17 @@ namespace Tamagotchis.Models
         {
             return _sleep;
         }
+
         public void SetSleep(int newSleep)
         {
             _sleep = newSleep;
         }
 
-        public int GetDead()
+        public bool GetDead()
         {
             return _dead;
         }
+
         public void SetDead(bool newDead)
         {
             _dead = newDead;
@@ -70,13 +77,40 @@ namespace Tamagotchis.Models
         {
             _instances.Add(this);
         }
+
         public static void ClearAll()
         {
             _instances.Clear();
         }
+
         public static List<Tama> GetAll()
         {
             return _instances;
+        }
+
+        public int GetId()
+        {
+            return _id;
+        }
+
+        public static Tama Find(int searchId)
+        {
+            return _instances[searchId-1];
+        }
+
+        public static void RemoveByIdAndReassignIds(int id)
+        {
+            for (int index = 0; index < _instances.Count; index++)
+            {
+                  if (_instances[index].GetId() == id)
+                  {
+                      _instances.RemoveAt(index);
+                  }
+            }
+            for (int j = 0; j < _instances.Count; j++)
+            {
+                _instances[0]._id = j+1;
+            }
         }
 
         public void CheckIfDead()
@@ -93,21 +127,21 @@ namespace Tamagotchis.Models
 
         public void FeedTamagotchi()
         {
-            _food += 15;
+            _food += 25;
             _play -= 10;
             _sleep -= 10;
         }
 
         public void PlayTamagotchi()
         {
-            _play += 15;
+            _play += 25;
             _food -= 10;
             _sleep -= 10;
         }
 
         public void SleepTamagotchi()
         {
-            _sleep += 15;
+            _sleep += 25;
             _food -= 10;
             _play -= 10;
         }
@@ -137,43 +171,43 @@ namespace Tamagotchis.Models
 
         public static void CycleFeedTamas()
         {
-          for (int index = 0; index < _instances.Count; index++)
-          {
-            _instances[index] = _instances[index].FeedTamagotchi();
-            _instances[index] = _instances[index].CheckIfOverHundred();
-            _instances[index] = _instances[index].CheckIfDead();
-          }
+            for (int index = 0; index < _instances.Count; index++)
+            {
+                _instances[index].FeedTamagotchi();
+                _instances[index].CheckIfOverHundred();
+                _instances[index].CheckIfDead();
+            }
         }
 
         public static void CyclePlayTamas()
         {
-          for (int index = 0; index < _instances.Count; index++)
-          {
-            _instances[index] = _instances[index].PlayTamagotchi();
-            _instances[index] = _instances[index].CheckIfOverHundred();
-            _instances[index] = _instances[index].CheckIfDead();
+            for (int index = 0; index < _instances.Count; index++)
+            {
+                _instances[index].PlayTamagotchi();
+                _instances[index].CheckIfOverHundred();
+                _instances[index].CheckIfDead();
 
-          }
+            }
         }
 
         public static void CycleSleepTamas()
         {
-          for (int index = 0; index < _instances.Count; index++)
-          {
-            _instances[index] = _instances[index].SleepTamagotchi();
-            _instances[index] = _instances[index].CheckIfOverHundred();
-            _instances[index] = _instances[index].CheckIfDead();
-          }
+            for (int index = 0; index < _instances.Count; index++)
+            {
+                _instances[index].SleepTamagotchi();
+                _instances[index].CheckIfOverHundred();
+                _instances[index].CheckIfDead();
+              }
         }
 
         public static void CycleWaitTamas()
         {
-          for (int index = 0; index < _instances.Count; index++)
-          {
-            _instances[index] = _instances[index].WaitTamagotchi();
-            _instances[index] = _instances[index].CheckIfOverHundred();
-            _instances[index] = _instances[index].CheckIfDead();
-          }
+            for (int index = 0; index < _instances.Count; index++)
+            {
+                _instances[index].WaitTamagotchi();
+                _instances[index].CheckIfOverHundred();
+                _instances[index].CheckIfDead();
+            }
         }
 
     }

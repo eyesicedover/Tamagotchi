@@ -31,22 +31,28 @@
             <div class="panel-heading">
               <h3>@Tama.GetName() is DEAD!</h3>
             </div>
+            <form action='/tamagotchis/remove/@Tama.GetId()' method="post">
+              <button type='submit' class='btn btn-danger'>Remove This Tama</button>
+            </form>
           </div>
         }
       }
-      <form action='/tama/game' method="post">
-        <button type='submit' class='btn btn-success'>Feed Them</button>
+      <form action='/tamagotchis/feed' method="post">
+        <button type='submit' class='btn btn-primary'>Feed Them</button>
+      </form><br>
+      <form action='/tamagotchis/play' method="post">
+        <button type='submit' class='btn btn-primary'>Play With Them</button>
+      </form><br>
+      <form action='/tamagotchis/sleep' method="post">
+        <button type='submit' class='btn btn-primary'>Let Them Sleep</button>
+      </form><br>
+      <form action='/tamagotchis/wait' method="post">
+        <button type='submit' class='btn btn-primary'>Wait</button>
+      </form><br>
+      <form action='/tamagotchis/clear' method="post">
+        <button type='submit' class='btn btn-success'>Clear All Tamas</button>
       </form>
-      <form action='/tama/game' method="post">
-        <button type='submit' class='btn btn-success'>Play With Them</button>
-      </form>
-      <form action='/tama/game' method="post">
-        <button type='submit' class='btn btn-success'>Let Them Sleep</button>
-      </form>
-      <form action='/tama/game' method="post">
-        <button type='submit' class='btn btn-success'>Wait</button>
-      </form>
-      <h3><a href="/tamagotchis">Go To Home Page</a></h3>
+      <h4><a href="/tamagotchis">Go To Home Page</a></h4>
     </div>
   </body>
 </html>
