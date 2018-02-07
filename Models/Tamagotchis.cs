@@ -10,6 +10,7 @@ namespace Tamagotchis.Models
         private int _play;
         private int _sleep;
         private bool _dead;
+        private List<Tama> _instances = new List<Tama> {};
 
         public Tama(string name)
         {
@@ -63,6 +64,19 @@ namespace Tamagotchis.Models
         public void SetDead(bool newDead)
         {
             _dead = newDead;
+        }
+
+        public void Save()
+        {
+            _instances.Add(this);
+        }
+        public static void ClearAll()
+        {
+            _instances.Clear();
+        }
+        public static List<Tama> GetAll()
+        {
+            return _instances;
         }
 
         public void CheckIfDead()
@@ -120,5 +134,47 @@ namespace Tamagotchis.Models
                 _play = 100;
             }
         }
+
+        public static void CycleFeedTamas()
+        {
+          for (int index = 0; index < _instances.Count; index++)
+          {
+            _instances[index] = _instances[index].FeedTamagotchi();
+            _instances[index] = _instances[index].CheckIfOverHundred();
+            _instances[index] = _instances[index].CheckIfDead();
+          }
+        }
+
+        public static void CyclePlayTamas()
+        {
+          for (int index = 0; index < _instances.Count; index++)
+          {
+            _instances[index] = _instances[index].PlayTamagotchi();
+            _instances[index] = _instances[index].CheckIfOverHundred();
+            _instances[index] = _instances[index].CheckIfDead();
+
+          }
+        }
+
+        public static void CycleSleepTamas()
+        {
+          for (int index = 0; index < _instances.Count; index++)
+          {
+            _instances[index] = _instances[index].SleepTamagotchi();
+            _instances[index] = _instances[index].CheckIfOverHundred();
+            _instances[index] = _instances[index].CheckIfDead();
+          }
+        }
+
+        public static void CycleWaitTamas()
+        {
+          for (int index = 0; index < _instances.Count; index++)
+          {
+            _instances[index] = _instances[index].WaitTamagotchi();
+            _instances[index] = _instances[index].CheckIfOverHundred();
+            _instances[index] = _instances[index].CheckIfDead();
+          }
+        }
+
     }
 }

@@ -10,9 +10,43 @@
       <h1>Tamagotchi Game</h1>
     </div>
     <div class="well text-center">
-      <p>Rules: Your tama has a food, play, and sleep stat. Keep your Tama happy by keeping the stats up! If any one stat drops below 0, your Tama will die. :'(</p>
+      <p>Rules: Your Tamas have food, play, and sleep stats. Keep your Tamas happy by keeping their stats up! If any one stat drops below 0, that Tama will die. :'(</p>
       <br><br>
-      
+      @foreach (var Tama in Model)
+      {
+        if(Tama.GetDead() == false)
+        {
+          <div class="panel text-center">
+            <div class="panel-heading">
+              <h3>@Tama.GetName()</h3>
+            </div>
+            <p>Food: @Tama.GetFood()</p>
+            <p>Play: @Tama.GetPlay()</p>
+            <p>Sleep: @Tama.GetSleep()</p>
+          </div>
+        }
+        else
+        {
+          <div class="panel text-center">
+            <div class="panel-heading">
+              <h3>@Tama.GetName() is DEAD!</h3>
+            </div>
+          </div>
+        }
+      }
+      <form action='/tama/game' method="post">
+        <button type='submit' class='btn btn-success'>Feed Them</button>
+      </form>
+      <form action='/tama/game' method="post">
+        <button type='submit' class='btn btn-success'>Play With Them</button>
+      </form>
+      <form action='/tama/game' method="post">
+        <button type='submit' class='btn btn-success'>Let Them Sleep</button>
+      </form>
+      <form action='/tama/game' method="post">
+        <button type='submit' class='btn btn-success'>Wait</button>
+      </form>
+      <h3><a href="/tamagotchis">Go To Home Page</a></h3>
     </div>
   </body>
 </html>
