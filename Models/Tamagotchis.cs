@@ -11,14 +11,16 @@ namespace Tamagotchis.Models
         private int _sleep;
         private bool _dead;
         private int _id;
+
         private static List<Tama> _instances = new List<Tama> {};
 
         public Tama(string name)
         {
+            Random rnd = new Random();
             _name = name;
-            _food = 80;
-            _play = 80;
-            _sleep = 80;
+            _food = rnd.Next(40, 80);
+            _play = rnd.Next(40, 80);
+            _sleep = rnd.Next(40, 80);
             _dead = false;
             _id = _instances.Count;
         }
